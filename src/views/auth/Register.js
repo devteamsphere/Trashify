@@ -1,6 +1,18 @@
 import React from "react";
+import { Formik } from "formik";
+import { signup } from "../../service/user.api";
 
 export default function Register() {
+  const handleSubmit = async (values) => {
+    console.log(values);
+    const data = await signup(values);
+    if (data.data.code === 200) {
+      window.location.replace("http://localhost:3000/#/auth/sign-in/default");
+    }
+    // localStorage.setItem('token', data.data.token);
+    // localStorage.setItem('user', JSON.stringify(data.data.user));
+    console.log(data);
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -43,7 +55,7 @@ export default function Register() {
                 <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Or sign up with credentials</small>
                 </div>
-                <form>
+                {/* <form>
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -114,7 +126,142 @@ export default function Register() {
                       Create Account
                     </button>
                   </div>
-                </form>
+                </form> */}
+                <Formik
+          initialValues={{
+            email: "",
+            password: "",
+            contactNo: "",
+            firstName: "",
+            lastName: "",
+            companyName: "",
+          }}
+          validate={(values) => {
+            const errors = {};
+            if (!values.email) {
+              errors.email = "Required";
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+              errors.email = "Invalid email address";
+            }
+            if (!values.password) {
+              errors.password = "Required";
+            }
+
+            if (!values.contactNo) {
+              errors.contactNo = "Required";
+            }
+            
+
+            // } else if (
+            //  values.password.length()<8
+            // ) {
+            //   errors.password = 'password must be 8 characters';
+            // }
+            return errors;
+          }}
+          onSubmit={async (values) => {
+            handleSubmit(values);
+            // setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2));
+            //   setSubmitting(false);
+            // }, 400);
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            /* and other goodies */
+          }) => (
+            <form onSubmit={handleSubmit}>
+              
+                <div>
+                  <h1 mt="10px">First Name</h1>
+                  <input
+                    className="loginInput"
+                    type="firstName"
+                    name="firstName"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.firstName}
+                    borderRadius="5px"
+                  />
+                  {errors.firstName && touched.firstName && errors.firstName}
+
+                  <h1 mt="10px">lastName</h1>
+                  <input
+                    className="loginInput"
+                    type="lastName"
+                    name="lastName"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.lastName}
+                    borderRadius="5px"
+                  />
+                  {errors.lastName && touched.lastName && errors.lastName}
+                </div>
+             
+              <h1 mt="10px">Email</h1>
+              <input
+                className="loginInput"
+                type="email"
+                name="email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                borderRadius="5px"
+              />
+              {errors.email && touched.email && errors.email}
+              <h1 mt="10px">Password</h1>
+              <input
+                className="loginInput"
+                type="password"
+                name="password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                border="1px"
+                borderColor="gray.200"
+                borderRadius="5px"
+              />
+              {errors.password && touched.password && errors.password}
+
+              <h1 mt="10px">Contact No</h1>
+              <input
+                className="loginInput"
+                type="number"
+                name="contactNo"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.contactNo}
+                border="1px"
+                borderColor="gray.200"
+                borderRadius="5px"
+              />
+              {errors.contactNo && touched.contactNo && errors.contactNo}
+              <br />
+              <button
+                fontSize="sm"
+                variant="brand"
+                fontWeight="500"
+                w="40%"
+                h="50"
+                ml="0px"
+                mb="24px"
+                type="submit"
+                disabled={!values.email || !values.password}
+              >
+                Sign Up
+              </button>
+            </form>
+          )}
+        </Formik>
               </div>
             </div>
           </div>
