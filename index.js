@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors"
 import authRoute from "./routes/auth.js"
 import userRoute from "./routes/user.js"
+import dustbinRoute from "./routes/publicDustbin.js"
 const app = express();
 
 dotenv.config();
@@ -24,6 +25,7 @@ const connect = async () => {
 
 app.use("/api/auth" , authRoute)
 app.use("/api/users" , userRoute)
+app.use("/api/dustbins" , dustbinRoute)
 
 app.listen(8880, () => {
     connect();
