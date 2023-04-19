@@ -1,90 +1,67 @@
-import React from "react";
+import { useEffect, useState, useRef } from "react";
+import * as tt from "@tomtom-international/web-sdk-maps";
+// import "../assets/css/location.css";
+import "@tomtom-international/web-sdk-maps/dist/maps.css";
 
-function MapExample() {
-  const mapRef = React.useRef(null);
-  React.useEffect(() => {
-    let google = window.google;
-    let map = mapRef.current;
-    let lat = "40.748817";
-    let lng = "-73.985428";
-    const myLatlng = new google.maps.LatLng(lat, lng);
-    const mapOptions = {
-      zoom: 12,
-      center: myLatlng,
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: "administrative",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#444444" }],
-        },
-        {
-          featureType: "landscape",
-          elementType: "all",
-          stylers: [{ color: "#f2f2f2" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "road",
-          elementType: "all",
-          stylers: [{ saturation: -100 }, { lightness: 45 }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "all",
-          stylers: [{ visibility: "simplified" }],
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "labels.icon",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "water",
-          elementType: "all",
-          stylers: [{ color: "#4299e1" }, { visibility: "on" }],
-        },
-      ],
+export default function MapExample() {
+  const mapElement = useRef();
+  const [map, setMap] = useState({});
+  const [latitude, setLatitude] = useState(23.30778);
+  const [longitude, setLongitude] = useState(77.33058);
+
+  useEffect(() => {
+    let map = tt.map({
+      key: "JvwENzHAF5n4IBpXvVkLLoXRmv0vGGGr",
+      container: mapElement.current,
+      stylesVisibility: {
+        trafficIncidents: true,
+        trafficFlow: true,
+      },
+      center: [longitude, latitude],
+      zoom: 9,
+    });
+    setMap(map);
+
+    const addMarker = () => {
+      const popupOffset = {
+        bottom: [0, -35],
+      };
+      const popup = new tt.Popup({ offset: popupOffset }).setHTML(
+        "You are here"
+      );
+      const element = document.createElement("div");
+      element.className = "marker";
+      const marker = new tt.Marker({
+        draggable: true,
+        element: element,
+      })
+        .setLngLat([longitude, latitude])
+        .addTo(map);
+      marker.on("dragend", () => {
+        const lnglat = marker.getLngLat();
+        console.log(lnglat);
+        setLongitude(lnglat.lng);
+        setLatitude(lnglat.lat);
+      });
+      marker.setPopup(popup).togglePopup();
     };
 
-    map = new google.maps.Map(map, mapOptions);
+    addMarker();
+    console.log(map);
 
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: "Notus React!",
-    });
+    return () => map.remove();
+  }, [longitude, latitude]);
 
-    const contentString =
-      '<div class="info-window-content"><h2>Notus React</h2>' +
-      "<p>A free Admin for Tailwind CSS, React, and React Hooks.</p></div>";
-
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-
-    google.maps.event.addListener(marker, "click", function () {
-      infowindow.open(map, marker);
-    });
-  });
   return (
     <>
-      <div className="relative w-full rounded h-600-px">
-        <div className="rounded h-full" ref={mapRef} />
+      <div className="Map">
+        <div
+          style={{ width: "100%", height: "100vh" }}
+          className="map d-flex flex-direction-row mt-3"
+          ref={mapElement}
+        ></div>
+        <div></div>
       </div>
     </>
   );
 }
-
-export default MapExample;

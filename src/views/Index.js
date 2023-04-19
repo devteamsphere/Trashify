@@ -15,12 +15,11 @@ export default function Index() {
             <div className="pt-32 sm:pt-0">
             
               <h2 className="font-semibold text-4xl text-blueGray-600">
-                Notus React - A beautiful extension for Tailwind CSS.
+              "यत्र स्वच्छता वर्तते,तत्र लक्ष्मी निवसति"
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                Notus React is Free and Open Source. It does not change any of
-                the CSS from{" "}
-                <a
+              Trashify is an innovative waste management app designed to help users easily and efficiently manage their waste. The app provides a range of features that allow users to easily track their waste production, set reminders for trash collection, and learn about sustainable waste management practices.
+                {/* <a
                   href="https://tailwindcss.com/?ref=creativetim"
                   className="text-blueGray-600"
                   target="_blank"
@@ -28,7 +27,7 @@ export default function Index() {
                   Tailwind CSS
                 </a>
                 . It features multiple HTML elements and it comes with dynamic
-                components for ReactJS, Vue and Angular.
+                components for ReactJS, Vue and Angular. */}
               </p>
               <div className="mt-12">
                 <a
@@ -52,7 +51,7 @@ export default function Index() {
 
         <img
           className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px"
-          src={require("assets/img/main-page.jpg").default}
+          src={require("assets/img/main-page1.jpg").default}
           alt="..."
         />
       </section>
@@ -83,7 +82,7 @@ export default function Index() {
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg " style={{backgroundColor:"#A3E373"}}>
                 <img
                   alt="..."
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+                  src={require("assets/img/why-trashify.jpeg").default}
                   className="w-full align-middle rounded-t-lg"
                 />
                 <blockquote className="relative p-8 mb-4">
@@ -98,10 +97,10 @@ export default function Index() {
                       className=" fill-current" style={{color:"#00A181"}}
                     ></polygon>
                   </svg>
-                  <h5 className="text-xl font-bold text-white">
+                  <h5 className="text-xl font-bold text-white" style={{fontSize:"30px",color:"green"}}>
                     Problems:
                   </h5>
-                  <p className="text-md font-light mt-2 text-white">
+                  <p className="text-md font-light mt-2 text-white" style={{color:"green",fontSize:"20px"}}>
                     <li>A lack of organization in the garbage sector.</li>
                     <li>Lack of motivation to maintain a clean environment.</li>
                   </p>
@@ -110,45 +109,45 @@ export default function Index() {
             </div>
 
             <div className="w-full md:w-6/12 px-4" style={{backgroundColor:"#004550"}}>
-            <h6 className="text-xl mb-1 font-bold" style={{fontSize:"30px", color:"white"}}>
+            <h6 className="text-xl mb-1 font-bold py-20" style={{fontSize:"50px", color:"white"}}>
                         Solutions:
                       </h6>
               <div className="flex flex-wrap ">
                 <div className="w-full md:w-6/12 px-4">
                   <div className="relative flex flex-col mt-4">
-                    <div className="px-4 py-5 flex-auto">
+                    <div className="px-4  flex-auto">
                       {/* <div #70E000 className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                         <i className="fas fa-sitemap"></i>
                       </div> */}
                       
-                      <p className="mb-4 text-blueGray-500" style={{color:"white"}}>
+                      <p className="mb-4 text-blueGray-500" style={{color:"white",fontSize:"20px"}}>
                        <span style={{fontWeight:"800"}}>1.</span> Currently, we are developing a tracking system for municipal waste vans.
                       </p>
                     </div>
                   </div>
                   <div className="relative flex flex-col min-w-0">
-                    <div className="px-4 py-5 flex-auto">
+                    <div className="px-4 pt-20 flex-auto">
                       {/* <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                         <i className="fas fa-drafting-compass"></i>
                       </div>
                       <h6 className="text-xl mb-1 font-semibold">
                         JavaScript Components
                       </h6> */}
-                      <p className="mb-4 text-blueGray-500" style={{position:"relative", marginLeft:"100",color:"white"}}>
-                        2.Making use of segregated waste to create and monetize useful products.
+                      <p className="mb-4 text-blueGray-500" style={{position:"relative", marginLeft:"100",color:"white",fontSize:"20px"}}>
+                      <span style={{fontWeight:"800"}}>3.</span>Making use of segregated waste to create and monetize useful products.
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="w-full md:w-6/12 px-4">
                   <div className="relative flex flex-col min-w-0 mt-4">
-                    <div className="px-4 py-5 flex-auto">
+                    <div className="px-4 py-40 flex-auto">
                       {/* <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                         <i className="fas fa-newspaper"></i>
                       </div>
                       <h6 className="text-xl mb-1 font-semibold">Pages</h6> */}
-                      <p className="mb-4 text-blueGray-500" style={{color:"white"}}>
-                        3.Users and municipalities can recieve real time notifications and alerts.
+                      <p className="mb-4 text-blueGray-500" style={{color:"white",fontSize:"20px"}}>
+                      <span style={{fontWeight:"800"}}>2.</span>Users and municipalities can recieve real time notifications and alerts.
                       </p>
                     </div>
                   </div>
@@ -172,21 +171,21 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="container mx-auto overflow-hidden pb-20">
+        <div className="container mx-auto overflow-hidden pb-2">
           <div className="flex flex-wrap items-center">
             <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
-              <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
+              {/* <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                 <i className="fas fa-sitemap text-xl"></i>
-              </div>
+              </div> */}
               <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                CSS Components
+                Benefits:
               </h3>
               <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                Every element that you need in a product comes built in as a
-                component. All components fit perfectly with each other and can
-                have different colours.
+              <ul><span style={{fontWeight:"800"}}>1.</span>Dustbins go high-tech with unique QR codes for easy scanning.</ul>
+              <ul><span style={{fontWeight:"800"}}>2.</span>Efficient delivery routes ensured with GPS-based van tracking</ul>
+              <ul><span style={{fontWeight:"800"}}>3.</span>Incentivized Reporting: Users Rewarded for Reporting Overflowing Dustbins.</ul>
               </p>
-              <div className="block pb-6">
+              {/* <div className="block pb-6">
                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2">
                   Buttons
                 </span>
@@ -211,55 +210,56 @@ export default function Index() {
                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2">
                   Typography
                 </span>
-              </div>
-              <a
+              </div> */}
+              {/* <a
                 href="https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus?ref=nr-index"
                 target="_blank"
                 className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
               >
                 View All{" "}
                 <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-              </a>
+              </a> */}
             </div>
 
-            <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mt-32">
+            <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mt-48">
               <div className="relative flex flex-col min-w-0 w-full mb-6 mt-48 md:mt-0">
-                <img
+                {/* <img
                   alt="..."
                   src={require("assets/img/component-btn.png").default}
                   className="w-full align-middle rounded absolute shadow-lg max-w-100-px z-3 left-145-px -top-29-px"
+                /> */}
+                <img
+                  alt="..."
+                  src={require("assets/img/incentive.png").default}
+                  className="w-full align-middle rounded-lg absolute shadow-lg -top-160-px left-260-px max-w-210-px" style={{width:"200px",height:"250px"}}
                 />
                 <img
                   alt="..."
-                  src={require("assets/img/component-profile-card.png").default}
-                  className="w-full align-middle rounded-lg absolute shadow-lg -top-160-px left-260-px max-w-210-px"
-                />
+                  src={require("assets/img/garbage.png").default}
+                  className="w-full align-middle rounded-lg absolute shadow-lg max-w-350-px -top-225-px left-25-px z-2" style={{width:"250px"}}
+                  />
+                
                 <img
                   alt="..."
-                  src={require("assets/img/component-info-card.png").default}
-                  className="w-full align-middle rounded-lg absolute shadow-lg max-w-180-px -top-225-px left-40-px z-2"
+                  src={require("assets/img/tracking-vans.jpg").default}
+                  className="w-full align-middle rounded-lg absolute shadow-2xl max-w-350-px -left-50-px top-25-px" style={{width:"300px"}}
                 />
-                <img
-                  alt="..."
-                  src={require("assets/img/component-info-2.png").default}
-                  className="w-full align-middle rounded-lg absolute shadow-2xl max-w-200-px -left-50-px top-25-px"
-                />
-                <img
+                {/* <img
                   alt="..."
                   src={require("assets/img/component-menu.png").default}
                   className="w-full align-middle rounded absolute shadow-lg max-w-580-px -left-20-px top-210-px"
-                />
-                <img
+                /> */}
+                {/* <img
                   alt="..."
                   src={require("assets/img/component-btn-pink.png").default}
                   className="w-full align-middle rounded absolute shadow-xl max-w-120-px left-195-px top-95-px"
-                />
+                /> */}
               </div>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center pt-32">
-            <div className="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
+            {/* <div className="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
               <div className="justify-center flex flex-wrap relative">
                 <div className="my-4 w-full lg:w-6/12 px-4">
                   <a
@@ -356,25 +356,25 @@ export default function Index() {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
-              <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
+            <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto">
+              {/* <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                 <i className="fas fa-drafting-compass text-xl"></i>
-              </div>
-              <h3 className="text-3xl mb-2 font-semibold leading-normal">
+              </div> */}
+              {/* <h3 className="text-3xl mb-2 font-semibold leading-normal">
                 Javascript Components
-              </h3>
-              <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
+              </h3> */}
+              {/* <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
                 In order to create a great User Experience some components
                 require JavaScript. In this way you can manipulate the elements
                 on the page and give more options to your users.
-              </p>
-              <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
+              </p> */}
+              {/* <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
                 We created a set of Components that are dynamic and come to help
                 you.
-              </p>
-              <div className="block pb-6">
+              </p> */}
+              {/* <div className="block pb-6">
                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2">
                   Alerts
                 </span>
@@ -399,15 +399,15 @@ export default function Index() {
                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2">
                   Tooltips
                 </span>
-              </div>
-              <a
+              </div> */}
+              {/* <a
                 href="https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus?ref=nr-index"
                 target="_blank"
                 className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
               >
                 View all{" "}
                 <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -416,19 +416,16 @@ export default function Index() {
           <div className="items-center flex flex-wrap">
             <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
               <div className="md:pr-12">
-                <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
+                {/* <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <i className="fas fa-file-alt text-xl"></i>
-                </div>
-                <h3 className="text-3xl font-semibold">
-                  Complex Documentation
+                </div> */}
+                <h3 className="text-3xl font-semibold" style={{fontSize:"50px"}}>
+                  Trashify community!
                 </h3>
-                <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                  This extension comes a lot of fully coded examples that help
-                  you get started faster. You can adjust the colors and also the
-                  programming language. You can change the text and images and
-                  you're good to go.
+                <p className="mt-4 text-lg leading-relaxed text-blueGray-500" style={{fontSize:"20px"}}>
+                "Join the conversation, make a difference - Together for a cleaner world"
                 </p>
-                <ul className="list-none mt-6">
+                {/* <ul className="list-none mt-6">
                   <li className="py-2">
                     <div className="flex items-center">
                       <div>
@@ -471,7 +468,7 @@ export default function Index() {
                       </div>
                     </div>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
 
@@ -483,13 +480,13 @@ export default function Index() {
                   transform:
                     "scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg)",
                 }}
-                src={require("assets/img/documentation.png").default}
+                src={require("assets/img/hero-discussions.png").default}
               />
             </div>
           </div>
         </div>
 
-        <div className="justify-center text-center flex flex-wrap mt-24">
+        {/* <div className="justify-center text-center flex flex-wrap mt-24">
           <div className="w-full md:w-6/12 px-12 md:px-4">
             <h2 className="font-semibold text-4xl">Beautiful Example Pages</h2>
             <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500">
@@ -498,10 +495,10 @@ export default function Index() {
               start playing with them.
             </p>
           </div>
-        </div>
+        </div> */}
       </section>
 
-      <section className="block relative z-1 bg-blueGray-600">
+      {/* <section className="block relative z-1 bg-blueGray-600">
         <div className="container mx-auto">
           <div className="justify-center flex flex-wrap">
             <div className="w-full lg:w-12/12 px-4  -mt-24">
@@ -554,9 +551,9 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="py-20 bg-blueGray-600 overflow-hidden">
+      {/* <section className="py-20 bg-blueGray-600 overflow-hidden">
         <div className="container mx-auto pb-64">
           <div className="flex flex-wrap justify-center">
             <div className="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
@@ -597,9 +594,9 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="pb-16 bg-blueGray-200 relative pt-32">
+      {/* <section className="pb-16 bg-blueGray-200 relative pt-32">
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
           style={{ transform: "translateZ(0)" }}
@@ -657,7 +654,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <Footer />
     </>
   );

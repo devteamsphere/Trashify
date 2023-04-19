@@ -50,7 +50,7 @@ export default function Sidebar() {
                     className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
-                   Notus React 
+                    Notus React
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -106,7 +106,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              {/* <li className="items-center">
+              <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
@@ -126,7 +126,7 @@ export default function Sidebar() {
                   ></i>{" "}
                   Settings
                 </Link>
-              </li> */}
+              </li>
 
               <li className="items-center">
                 <Link
@@ -150,7 +150,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              {/* <li className="items-center">
+              <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
@@ -170,7 +170,7 @@ export default function Sidebar() {
                   ></i>{" "}
                   Maps
                 </Link>
-              </li> */}
+              </li>
             </ul>
 
             {/* Divider */}
