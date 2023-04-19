@@ -47,6 +47,7 @@ export default function MapExample() {
     };
 
     addMarker();
+    console.log(map);
 
     return () => map.remove();
   }, [longitude, latitude]);
