@@ -27,6 +27,7 @@ app.use("/api/auth" , authRoute)
 app.use("/api/users" , userRoute)
 app.use("/api/dustbins" , dustbinRoute)
 
+
 app.listen(8880, () => {
     connect();
   console.log("Connected to backend");
