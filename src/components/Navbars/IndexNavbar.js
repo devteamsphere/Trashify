@@ -48,14 +48,14 @@ export default function Navbar(props) {
               {/* <li className="flex items-center">
                 <IndexDropdown />
               </li> */}
-                  <Link
+                  {/* <Link
           to="/admin/dashboard"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
         ><button className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
         Dashboard
-      </button></Link>
+      </button></Link> */}
               {/* <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"

@@ -5,11 +5,12 @@ import "@tomtom-international/web-sdk-maps/dist/maps.css";
 
 export default function MapExample() {
   const mapElement = useRef();
-  const [map, setMap] = useState({});
+  const [maps, setMap] = useState({});
   const [latitude, setLatitude] = useState(23.30778);
   const [longitude, setLongitude] = useState(77.33058);
 
   useEffect(() => {
+    // console.log(maps);
     let map = tt.map({
       key: "JvwENzHAF5n4IBpXvVkLLoXRmv0vGGGr",
       container: mapElement.current,
@@ -21,7 +22,7 @@ export default function MapExample() {
       zoom: 9,
     });
     setMap(map);
-
+   
     const addMarker = () => {
       const popupOffset = {
         bottom: [0, -35],

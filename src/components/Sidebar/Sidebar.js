@@ -27,6 +27,8 @@ export default function Sidebar() {
             Home
           </Link>
           {/* User */}
+                      <hr className="my-4 md:min-w-full" />
+
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
               <NotificationDropdown />
@@ -76,7 +78,7 @@ export default function Sidebar() {
             </form>
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
             {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Admin Layout Pages
@@ -124,7 +126,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Settings
+                  Profile
                 </Link>
               </li>
 
@@ -146,7 +148,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Tables
+                  QR Code
                 </Link>
               </li>
 
@@ -174,7 +176,7 @@ export default function Sidebar() {
             </ul>
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
             {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Auth Layout Pages
@@ -204,7 +206,7 @@ export default function Sidebar() {
             </ul> */}
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
             {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               No Layout Pages
@@ -222,7 +224,7 @@ export default function Sidebar() {
                 </Link>
               </li> */}
 
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   to="/profile"
@@ -230,7 +232,7 @@ export default function Sidebar() {
                   <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
                   Profile Page
                 </Link>
-              </li>
+              </li> */}
             </ul>
 
             {/* Divider */}

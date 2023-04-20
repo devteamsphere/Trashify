@@ -7,7 +7,7 @@ export default function Register() {
     console.log(values);
     const data = await signup(values);
     if (data.data.code === 200) {
-      window.location.replace("http://localhost:3000/#/auth/sign-in/default");
+      window.location.replace("http://localhost:3000/admin/dashboard");
     }
     // localStorage.setItem('token', data.data.token);
     // localStorage.setItem('user', JSON.stringify(data.data.user));
@@ -37,7 +37,20 @@ export default function Register() {
                     />
                     Github
                   </button> */}
-                  <button
+                  <form action={`http://localhost:8000/auth/google`}>
+                    <button
+                      type="submit"
+                      className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                    >
+                      <img
+                        alt="..."
+                        className="w-5 mr-1"
+                        src={require("assets/img/google.svg").default}
+                      />
+                      Google
+                    </button>
+                  </form>
+                  {/* <button
                     className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
                   >
@@ -47,7 +60,7 @@ export default function Register() {
                       src={require("assets/img/google.svg").default}
                     />
                     Google
-                  </button>
+                  </button> */}
                 </div>
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
               </div>
@@ -65,7 +78,7 @@ export default function Register() {
                     </label>
                     <input
                       type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Name"
                     />
                   </div>
@@ -79,7 +92,7 @@ export default function Register() {
                     </label>
                     <input
                       type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
                     />
                   </div>
@@ -93,7 +106,7 @@ export default function Register() {
                     </label>
                     <input
                       type="password"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
                     />
                   </div>
@@ -128,140 +141,142 @@ export default function Register() {
                   </div>
                 </form> */}
                 <Formik
-          initialValues={{
-            email: "",
-            password: "",
-            contactNo: "",
-            firstName: "",
-            lastName: "",
-            companyName: "",
-          }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = "Invalid email address";
-            }
-            if (!values.password) {
-              errors.password = "Required";
-            }
+                  initialValues={{
+                    email: "",
+                    password: "",
+                    contactNo: "",
+                    firstName: "",
+                    lastName: "",
+                    companyName: "",
+                  }}
+                  validate={(values) => {
+                    const errors = {};
+                    if (!values.email) {
+                      errors.email = "Required";
+                    } else if (
+                      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+                        values.email
+                      )
+                    ) {
+                      errors.email = "Invalid email address";
+                    }
+                    if (!values.password) {
+                      errors.password = "Required";
+                    }
 
-            if (!values.contactNo) {
-              errors.contactNo = "Required";
-            }
-            
+                    if (!values.contactNo) {
+                      errors.contactNo = "Required";
+                    }
 
-            // } else if (
-            //  values.password.length()<8
-            // ) {
-            //   errors.password = 'password must be 8 characters';
-            // }
-            return errors;
-          }}
-          onSubmit={async (values) => {
-            handleSubmit(values);
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            //   setSubmitting(false);
-            // }, 400);
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-            /* and other goodies */
-          }) => (
-            <form onSubmit={handleSubmit}>
-              
-                <div>
-                  <h1 mt="10px">First Name</h1>
-                  <input
-                    className="loginInput"
-                    type="firstName"
-                    name="firstName"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.firstName}
-                    borderRadius="5px"
-                  />
-                  {errors.firstName && touched.firstName && errors.firstName}
+                    // } else if (
+                    //  values.password.length()<8
+                    // ) {
+                    //   errors.password = 'password must be 8 characters';
+                    // }
+                    return errors;
+                  }}
+                  onSubmit={async (values) => {
+                    handleSubmit(values);
+                    // setTimeout(() => {
+                    //   alert(JSON.stringify(values, null, 2));
+                    //   setSubmitting(false);
+                    // }, 400);
+                  }}
+                >
+                  {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                    isSubmitting,
+                    /* and other goodies */
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                      <div>
+                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                          First Name
+                        </label>
+                        <input
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          type="firstName"
+                          name="firstName"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.firstName}
+                        />
+                        {errors.firstName &&
+                          touched.firstName &&
+                          errors.firstName}
 
-                  <h1 mt="10px">lastName</h1>
-                  <input
-                    className="loginInput"
-                    type="lastName"
-                    name="lastName"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.lastName}
-                    borderRadius="5px"
-                  />
-                  {errors.lastName && touched.lastName && errors.lastName}
-                </div>
-             
-              <h1 mt="10px">Email</h1>
-              <input
-                className="loginInput"
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                borderRadius="5px"
-              />
-              {errors.email && touched.email && errors.email}
-              <h1 mt="10px">Password</h1>
-              <input
-                className="loginInput"
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-                border="1px"
-                borderColor="gray.200"
-                borderRadius="5px"
-              />
-              {errors.password && touched.password && errors.password}
+                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                          lastName
+                        </label>
+                        <input
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          type="lastName"
+                          name="lastName"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.lastName}
+                        />
+                        {errors.lastName && touched.lastName && errors.lastName}
+                      </div>
 
-              <h1 mt="10px">Contact No</h1>
-              <input
-                className="loginInput"
-                type="number"
-                name="contactNo"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.contactNo}
-                border="1px"
-                borderColor="gray.200"
-                borderRadius="5px"
-              />
-              {errors.contactNo && touched.contactNo && errors.contactNo}
-              <br />
-              <button
-                fontSize="sm"
-                variant="brand"
-                fontWeight="500"
-                w="40%"
-                h="50"
-                ml="0px"
-                mb="24px"
-                type="submit"
-                disabled={!values.email || !values.password}
-              >
-                Sign Up
-              </button>
-            </form>
-          )}
-        </Formik>
+                      <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                        Email
+                      </label>
+                      <input
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        type="email"
+                        name="email"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.email}
+                      />
+                      {errors.email && touched.email && errors.email}
+                      <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                        Password
+                      </label>
+                      <input
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                      />
+                      {errors.password && touched.password && errors.password}
+
+                      <label
+                        mt="10px"
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      >
+                        Contact No
+                      </label>
+                      <input
+                        type="number"
+                        name="contactNo"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.contactNo}
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 mb-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      />
+                      {errors.contactNo &&
+                        touched.contactNo &&
+                        errors.contactNo}
+                      <br />
+                      <button
+                        type="submit"
+                        disabled={!values.email || !values.password}
+                        className="bg-blueGray-800 text-white mt-5 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      >
+                        Sign Up
+                      </button>
+                    </form>
+                  )}
+                </Formik>
               </div>
             </div>
           </div>
