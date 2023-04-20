@@ -5,10 +5,20 @@ import cors from "cors"
 import authRoute from "./routes/auth.js"
 import userRoute from "./routes/user.js"
 import dustbinRoute from "./routes/publicDustbin.js"
+import passport from 'passport';
+import './utils/passport.js';
+import session from 'express-session';
 const app = express();
 
 dotenv.config();
-
+app.use(
+  session({
+    secret: "Our little secret.",
+    resave: false,
+    
+    saveUninitialized: false,
+  })
+);
 app.use(cors());
 app.use(express.json());
 
@@ -27,8 +37,20 @@ app.use("/api/auth" , authRoute)
 app.use("/api/users" , userRoute)
 app.use("/api/dustbins" , dustbinRoute)
 
+//Google auth
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile','email'] }));
 
-app.listen(8880, () => {
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    console.log("google auth successfull");
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:3000/admin/dashboard');
+  });
+
+
+app.listen(8000, () => {
     connect();
   console.log("Connected to backend");
 });
