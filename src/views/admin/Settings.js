@@ -23,7 +23,7 @@ const [user,setUser] = useState({});
           <CardSettings user={user}/>
         </div>
         <div className="w-full lg:w-4/12 px-4">
-          <CardProfile />
+          <CardProfile user={user}/>
         </div>
       </div>
     </>
