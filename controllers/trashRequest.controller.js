@@ -1,4 +1,8 @@
 import trashRequest from "../models/trashRequest.js";
+import {
+    serverErrorResponse,
+    successResponse,
+  } from "../utils/response.js";
 
 export const newtrashRequest = async (req, res) => {
     try {
