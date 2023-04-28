@@ -1,4 +1,9 @@
 import User from "../models/User.js";
+import passwordGenerator from "generate-password"
+import {
+  serverErrorResponse,
+  successResponse,
+} from "../utils/response.js";
 
 
 export const updateUser = async (req,res)=>{
@@ -40,3 +45,34 @@ export const getUsers = async (req,res)=>{
       res.status(404).send("error");
     }
 }
+export const createDriver = async (req, res) => {
+  try {
+
+
+      let data = {
+          "firstName": req.body.longitude,
+          "lastName": req.body.latitude,
+          "email": req.body.email,
+          "contactNo": req.body.contactNo,
+          "aadhaarCardNo": req.body.aadhaarCardNo,
+          "userType": req.body.userType,
+          "longitude": req.body.longitude,
+          "latitude": req.body.latitude,
+          "address" : req.body.address,
+          "profileImg" : req.body.profileImg,
+          "password" :  passwordGenerator.generate({
+            length: 6,
+            numbers: true
+          })
+
+      };
+
+      const newDriverDetail = new User(data);
+
+      const newDriver = await newDriverDetail.save();
+      res.status(200).json(newDriver);
+  } catch (error) {
+      return serverErrorResponse(res, error.message);
+  }
+
+};
