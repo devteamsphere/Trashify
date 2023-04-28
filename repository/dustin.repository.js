@@ -1,8 +1,8 @@
-import dustbinRequest from "../models/dustbinRequest.js";
+import trashRequest from "../models/trashRequest.js";
 
 export const createDustbinRequest = async (data) => {
     try {
-      const newRequest = await dustbinRequest.create(data);
+      const newRequest = await trashRequest.create(data);
       return [null, newRequest];
     } catch (error) {
       let errObj = {

@@ -5,6 +5,7 @@ import cors from "cors"
 import authRoute from "./routes/auth.js"
 import userRoute from "./routes/user.js"
 import dustbinRoute from "./routes/publicDustbin.js"
+import trashRequest from "./routes/trashRequest.js"
 import passport from 'passport';
 import './utils/passport.js';
 import session from 'express-session';
@@ -36,6 +37,7 @@ const connect = async () => {
 app.use("/api/auth" , authRoute)
 app.use("/api/users" , userRoute)
 app.use("/api/dustbins" , dustbinRoute)
+app.use("/api/trashRequest" , trashRequest)
 
 //Google auth
 app.get('/auth/google',
