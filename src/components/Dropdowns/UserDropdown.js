@@ -26,7 +26,7 @@ const UserDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        <div className="items-center flex">
+        {/* <div className="items-center flex">
           <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
             <img
               alt="..."
@@ -34,7 +34,7 @@ const UserDropdown = () => {
               src={require("assets/img/team-1-800x800.jpg").default}
             />
           </span>
-        </div>
+        </div> */}
       </a>
       <div
         ref={popoverDropdownRef}

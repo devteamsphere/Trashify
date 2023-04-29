@@ -4,6 +4,7 @@ import React,{useEffect,useState} from "react";
 
 import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
+import EditProfile from "components/Cards/EditProfile";
 
 export default function Settings() {
 const [user,setUser] = useState({});
@@ -24,6 +25,9 @@ const [user,setUser] = useState({});
         </div>
         <div className="w-full lg:w-4/12 px-4">
           <CardProfile user={user}/>
+        </div>
+        <div className="w-full lg:w-4/12 px-4">
+          <EditProfile user={user}/>
         </div>
       </div>
     </>
