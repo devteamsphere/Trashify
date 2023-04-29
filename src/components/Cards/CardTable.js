@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
 // components
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 export default function CardTable({ color }) {
-  return (
+  
+
+   return (
     <>
       <div
         className={
@@ -25,9 +29,11 @@ export default function CardTable({ color }) {
               >
                 Card Tables
               </h3>
-              <button className="text-lightBlue-500 bg-transparent border border-solid border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+              {/* <button className="text-lightBlue-500 bg-transparent border border-solid border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
                   Generate QR
-                </button>
+              </button> */}
+              <Link className="text-lightBlue-500 bg-transparent border border-solid border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/admin/generateQR">Generate QR</Link>
+              
             </div>
           </div>
         </div>

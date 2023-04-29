@@ -1,74 +1,3 @@
-// import { useEffect, useState, useRef } from "react";
-// import * as tt from "@tomtom-international/web-sdk-maps";
-// // import "../assets/css/location.css";
-// import "@tomtom-international/web-sdk-maps/dist/maps.css";
-
-// export default function MapExample() {
-//   const mapElement = useRef();
-//   const [maps, setMap] = useState({});
-//   const [latitude, setLatitude] = useState(23.30778);
-//   const [longitude, setLongitude] = useState(77.33058);
-
-//   useEffect(() => {
-//     // console.log(maps);
-//     let map = tt.map({
-//       key: "JvwENzHAF5n4IBpXvVkLLoXRmv0vGGGr",
-//       container: mapElement.current,
-//       stylesVisibility: {
-//         trafficIncidents: true,
-//         trafficFlow: true,
-//       },
-//       center: [longitude, latitude],
-//       zoom: 9,
-//     });
-//     setMap(map);
-   
-//     const addMarker = () => {
-//       const popupOffset = {
-//         bottom: [0, -35],
-//       };
-//       const popup = new tt.Popup({ offset: popupOffset }).setHTML(
-//         "You are here"
-//       );
-//       const element = document.createElement("div");
-//       element.className = "marker";
-//       const marker = new tt.Marker({
-//         draggable: true,
-//         element: element,
-//       })
-//         .setLngLat([longitude, latitude])
-//         .addTo(map);
-//       marker.on("dragend", () => {
-//         const lnglat = marker.getLngLat();
-//         console.log(lnglat);
-//         setLongitude(lnglat.lng);
-//         setLatitude(lnglat.lat);
-//       });
-//       marker.setPopup(popup).togglePopup();
-//     };
-
-//     addMarker();
-//     console.log(map);
-
-//     return () => map.remove();
-//   }, [longitude, latitude]);
-
-//   return (
-//     <>
-//       <div className="Map">
-//         <div
-//           style={{ width: "100%", height: "100vh" }}
-//           className="map d-flex flex-direction-row mt-3"
-//           ref={mapElement}
-//         ></div>
-//         <div></div>
-//       </div>
-//     </>
-//   );
-// }
-
-
-
 
 import { useEffect, useRef, useState } from 'react';
 import * as tt from '@tomtom-international/web-sdk-maps';
@@ -77,8 +6,8 @@ import '@tomtom-international/web-sdk-maps/dist/maps.css';
 // import './App.css';
 import '../../assets/styles/map.css'
 // import useGeolocation from 'react-hook-geolocation';
-
-const MapExample = () => {
+import PlaceFinder from './PlaceFinder';
+const GenerateQR = () => {
   // const { latitude: initialLatitude, longitude: initialLongitude } =
   //   useGeolocation();
   // console.log(initialLatitude, initialLongitude);
@@ -86,7 +15,26 @@ const MapExample = () => {
   const [map, setMap] = useState({});
   const [longitude, setLongitude] = useState(/*initialLongitude ||*/ 77.361903);
   const [latitude, setLatitude] = useState(/*initialLatitude ||*/ 23.312126);
+  const [geoLocation, setGeoLocation] = useState({});
+    // const [geoError, setGeoError] = useState(null);
+  const [query, setQuery] = useState(null);
+    const [searchResults, setSearchResults] = useState();
+    
 
+   
+    async function onSearchChange(query) {
+      console.log(query);
+        if (query.length > 0) {
+            let placeFinder = new PlaceFinder("RzroMgvAOXlpkqRJbX6AUdNu5UX7DMqb");
+            let results = await placeFinder.getNearbyPlaces(
+                query,
+                latitude,
+                longitude
+            );
+            setSearchResults(results);
+            console.log(results);
+        }
+    }
   const convertToPoints = lngLat => {
     return {
       point: {
@@ -146,6 +94,7 @@ const MapExample = () => {
   
   
   }, [])
+  
 
   useEffect(() => {
     const origin = {
@@ -242,10 +191,12 @@ const MapExample = () => {
 
     return () => map.remove();
   }, [longitude, latitude]);
+
+  
   return (
     <>
       {map && (
-        <div className="app">
+        <div className="aap">
           <div ref={mapElement} className="map" />
           <div className="search-bar">
             <h1>Where to?</h1>
@@ -263,6 +214,8 @@ const MapExample = () => {
               placeholder="Put in Latitude"
               onChange={e => setLatitude(e.target.value)}
             />
+            <input type='text' id="query" onChange={(e)=>setQuery(e.target.value)} />
+            <button onClick={onSearchChange(query)}>search</button>
           </div>
         </div>
       )}
@@ -270,4 +223,4 @@ const MapExample = () => {
   );
 };
 
-export default MapExample;
+export default GenerateQR;
