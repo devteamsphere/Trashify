@@ -21,17 +21,32 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
     contactNo: {
-      type: String,
+      type: Number,
     },
-    googleId: {
-      type: String,
-      default:""
+    aadhaarCardNo : {
+      type : String,
+      required : true,
     },
-
-    isAdmin: {
-      type: Boolean,
-      default: false,
+    userType : {
+      type : String,
+      enum:["user","driver","admin"],
+      required : true,
+      default : "user"
     },
+    longitude: {
+      type : String,
+    },
+    latitude : {
+      type : String,
+    },
+    address : {
+      type : String,
+      required : true
+    },
+    profileImg : {
+      type : String,
+      required : false
+    }
   },
   { timestamps: true }
 );
