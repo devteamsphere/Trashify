@@ -17,3 +17,22 @@ export const signup = async (data) => {
       console.log(error)
   }
 }
+export const addDustbin = async (data) => {
+  try {
+      console.log(data);
+      return await axios.post(`${url}/api/dustbins/publicdustbin`, data);
+  } catch (error) {
+      console.log(error)
+  }
+}
+export const getDustbin = async () => {
+  try {
+    console.log("getDustbin");
+     
+      const data =  await axios.get(`${url}/api/dustbins/getDustbin`);
+      console.log("data",data);
+      return data;
+  } catch (error) {
+      console.log("api error",error)
+  }
+}
