@@ -19,6 +19,7 @@ import EditProfile from "components/Cards/EditProfile";
 import Onboarding from "components/Cards/Onboarding";
 import generateQR from "views/admin/generateQR";
 
+
 export default function Admin() {
   return (
     <>
