@@ -14,7 +14,7 @@ const trashRequestSchema = new mongoose.Schema(
             default: ""
         },
         dustbinId: {
-            type: Number,
+            type: String,
             required: false,
             unique: true,
 
@@ -43,7 +43,7 @@ const trashRequestSchema = new mongoose.Schema(
             default : ""
         },
         userId : {
-            type : Number,
+            type : String,
             required : true,
         }
 

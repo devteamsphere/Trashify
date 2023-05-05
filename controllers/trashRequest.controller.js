@@ -24,7 +24,7 @@ export const newtrashRequest = async (req, res) => {
 
         const newRequest = await newTrashRequest.save();
         res.status(200).json(newRequest);
-    } catch (err) {
+    } catch (error) {
         return serverErrorResponse(res, error.message);
     }
 
