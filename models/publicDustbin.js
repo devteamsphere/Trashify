@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const DustbinSchema = new mongoose.Schema(
   {
+    dustbinId : {
+      type: String,
+      required: true,
+    },
     longitude: {
       type: String,
       required: true,
@@ -13,10 +17,13 @@ const DustbinSchema = new mongoose.Schema(
       default: "",
     },
 
-    imgURL: {
+    dustbinId: {
       type: String,
-      required: true,
       default: "",
+    },
+    qrUrl:{
+      type: String,
+      default: ""
     },
     address: {
       type: String,
