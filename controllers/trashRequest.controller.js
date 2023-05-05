@@ -23,7 +23,8 @@ export const newtrashRequest = async (req, res) => {
         const newTrashRequest = new trashRequest(data);
 
         const newRequest = await newTrashRequest.save();
-        res.status(200).json(newRequest);
+        console.log(newRequest);
+        return res.status(200).json(newRequest);
     } catch (error) {
         return serverErrorResponse(res, error.message);
     }
