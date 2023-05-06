@@ -7,6 +7,7 @@ import userRoute from "./routes/user.js"
 import dustbinRoute from "./routes/publicDustbin.js"
 import trashRequest from "./routes/trashRequest.js"
 import newDriver from "./routes/user.js"
+import acceptedRequest from "./routes/driverApp.js"
 import passport from 'passport';
 import './utils/passport.js';
 import session from 'express-session';
@@ -40,6 +41,7 @@ app.use("/api/users" , userRoute)
 app.use("/api/dustbins" , dustbinRoute)
 app.use("/api/trashRequest" , trashRequest)
 app.use("/api/newDriver" , newDriver)
+app.use("/api/newacceptedRequest" , acceptedRequest);
 
 //Google auth
 app.get('/auth/google',

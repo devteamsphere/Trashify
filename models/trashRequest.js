@@ -21,36 +21,38 @@ const trashRequestSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum:["pending","accepted","rejected"],
+            enum: ["pending", "accepted", "rejected"],
             required: true,
-            default:"pending",
+            default: "pending",
 
         },
         requestType: {
             type: String,
-            enum:["public","personal"],
+            enum: ["public", "personal"],
             required: true,
-            default:"",
+            default: "",
 
         },
         description: {
-            type : String,
+            type: String,
             required: false,
 
         },
-        imgUrl : {
-            type : String,
-            default : ""
+        imgUrl: {
+            type: String,
+            default: ""
         },
-        userId : {
-            type : String,
-            required : true,
-        }
+        userId: {
+            type: String,
+            required: true,
+        },
+        
+        
 
 
-    },{
-        timestamps:true
-    },
+    }, {
+    timestamps: true
+},
 
 );
 
