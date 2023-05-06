@@ -46,6 +46,9 @@ const trashRequestSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        address: {
+            type: String,
+        }
         
         
 

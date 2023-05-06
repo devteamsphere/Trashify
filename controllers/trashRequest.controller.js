@@ -21,6 +21,7 @@ export const newtrashRequest = async (req, res) => {
       description: req.body.description,
       imgUrl: req.body.imgUrl,
       userId: req.body.userId,
+      address:req.body.address
     };
 
     const newTrashRequest = new trashRequest(data);
