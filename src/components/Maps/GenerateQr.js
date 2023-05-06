@@ -4,7 +4,7 @@ import * as ttapi from "@tomtom-international/web-sdk-services";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 // import './App.css';
 import "../../assets/styles/map.css";
-import DataListInput from "react-datalist-input";
+// import DataListInput from "react-datalist-input";
 // import useGeolocation from 'react-hook-geolocation';
 import PlaceFinder from "./PlaceFinder";
 import { addDustbin } from "../../service/user.api";

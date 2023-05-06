@@ -14,8 +14,11 @@ import Dashboard from "views/admin/Dashboard.js";
 import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
-import generateQR from "views/admin/generateQR";
+import DriverDetail from "views/admin/DriverDetail";
 import EditProfile from "components/Cards/EditProfile";
+import Onboarding from "components/Cards/Onboarding";
+import generateQR from "views/admin/generateQR";
+
 
 export default function Admin() {
   return (
@@ -31,8 +34,10 @@ export default function Admin() {
             <Route path="/admin/maps" exact component={Maps} />
             <Route path="/admin/settings" exact component={Settings} />
             <Route path="/admin/tables" exact component={Tables} />
+            <Route path="/admin/driverDetail" exact component={DriverDetail} />
             <Route path="/admin/generateQR" exact component={generateQR} />
             <Route path="/admin/EditProfile" exact component={EditProfile} />
+            <Route path="/admin/onboarding" exact component={Onboarding} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />
