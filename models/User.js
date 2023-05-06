@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema(
     },
     aadhaarCardNo : {
       type : String,
-      required : true,
+      
     },
     userType : {
       type : String,
@@ -41,7 +41,7 @@ const UserSchema = new mongoose.Schema(
     },
     address : {
       type : String,
-      required : true
+      
     },
     profileImg : {
       type : String,
