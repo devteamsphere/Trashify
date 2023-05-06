@@ -18,7 +18,7 @@ export const newtrashRequest = async (req, res) => {
 
     const newRequest = await newTrashRequest.save();
     console.log(newRequest);
-    return res.status(200).json(newRequest);
+    return successResponse(res, newRequest, "Trash request created successfully..")
   } catch (error) {
     return serverErrorResponse(res, error.message);
   }
