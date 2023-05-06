@@ -40,7 +40,6 @@ app.use("/api/auth" , authRoute)
 app.use("/api/users" , userRoute)
 app.use("/api/dustbins" , dustbinRoute)
 app.use("/api/trashRequest" , trashRequest)
-app.use("/api/newDriver" , newDriver)
 app.use("/api/newacceptedRequest" , acceptedRequest);
 
 //Google auth

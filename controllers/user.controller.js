@@ -62,6 +62,7 @@ export const createDriver = async (req, res) => {
     const newDriverDetail = new User(data);
 
     const newDriver = await newDriverDetail.save();
+    console.log(newDriver);
     return res.status(200).json(newDriver);
   } catch (error) {
     return serverErrorResponse(res, error.message);
