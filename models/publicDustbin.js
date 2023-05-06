@@ -4,7 +4,6 @@ const DustbinSchema = new mongoose.Schema(
   {
     dustbinId : {
       type: String,
-      required: true,
       default: "",
     },
     longitude: {
