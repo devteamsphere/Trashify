@@ -9,8 +9,8 @@ export default function Register() {
     if (data.data.code === 200) {
       window.location.replace("http://localhost:3000/admin/dashboard");
     }
-    // localStorage.setItem('token', data.data.token);
-    // localStorage.setItem('user', JSON.stringify(data.data.user));
+    localStorage.setItem('token', data.data.token);
+    localStorage.setItem('user', JSON.stringify(data.data.user));
     console.log(data);
   };
   return (

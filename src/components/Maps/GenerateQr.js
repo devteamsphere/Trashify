@@ -7,11 +7,7 @@ import "../../assets/styles/map.css";
 import DataListInput from "react-datalist-input";
 // import useGeolocation from 'react-hook-geolocation';
 import PlaceFinder from "./PlaceFinder";
-import {addDustbin} from "../../service/user.api";
-
-
-
-
+import { addDustbin } from "../../service/user.api";
 
 const GenerateQR = () => {
   // const { latitude: initialLatitude, longitude: initialLongitude } =
@@ -25,25 +21,21 @@ const GenerateQR = () => {
   // const [geoError, setGeoError] = useState(null);
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const[address, setAddress] = useState("");
+  const [address, setAddress] = useState("");
 
-
- const handleSubmit = async()=>{
-  const res = await addDustbin({
-    "latitude": latitude,
-    "longitude": longitude,
-    "address": address,
-  });
-  console.log(res);
-  if(res.status === 200){
-    alert("Dustbin Added Successfully");
-  } else {
-    alert("Something went wrong");
-  }
-
- }
-
-   
+  const handleSubmit = async () => {
+    const res = await addDustbin({
+      latitude: latitude,
+      longitude: longitude,
+      address: address,
+    });
+    console.log(res);
+    if (res.status === 200) {
+      alert("Dustbin Added Successfully");
+    } else {
+      alert("Something went wrong");
+    }
+  };
 
   const changeHandler = (e) => {
     setQuery(e.target.value);
@@ -59,7 +51,7 @@ const GenerateQR = () => {
         latitude,
         longitude
       );
-      let temp =[...results];
+      let temp = [...results];
       setSearchResults(temp);
       // setLatitude(results[0].position.lat);
       // setLongitude(results[0].position.lon);
@@ -215,14 +207,12 @@ const GenerateQR = () => {
     return () => map.remove();
   }, [longitude, latitude]);
 
- 
-
   return (
     <>
       {map && (
         <div className="aap m-10 mt-28">
-          <div ref={mapElement} className="map" />
-          <div className="search-bar m-20 p-5">
+        
+          <div className=" m-48 px-18">
             <h1>Where to?</h1>
             {/* <input
               type="text"
@@ -245,7 +235,7 @@ const GenerateQR = () => {
                     {result.address.freeformAddress}
                   </option>
                 ))} */}
-            <div className="m-5 p-3">
+            <div className="mx-20 p-10">
               <input
                 type="text"
                 className="form-control m-5 z-20"
@@ -253,37 +243,53 @@ const GenerateQR = () => {
                 placeholder="Address"
                 list="slist"
                 name="owner_id"
-                onSelect={(e)=>{
+                onSelect={(e) => {
                   let text = e.target.value;
                   const arr = text.split(" ");
-                  if(arr.length>2){
-                  
-                  const lat = arr[arr.length-2];
-                  const lon = arr[arr.length-1];
-                  setLatitude(lat);
-                  setLongitude(lon);
-                  setAddress(text);
+                  if (arr.length > 2) {
+                    const lat = arr[arr.length - 2];
+                    const lon = arr[arr.length - 1];
+                    setLatitude(lat);
+                    setLongitude(lon);
+                    setAddress(text);
                   }
-
-
-
                 }}
               />
-             
-              <datalist id="slist" >
-               
-                  {searchResults.length> 0 && searchResults.map(( result,index) => {
-                    console.log("result", result);
-                    return ( <option key={index} value={result.address ? result.address.freeformAddress +" "+ result.position.lat +" "+ result.position.lon  : ""}>
+
+              <datalist id="slist">
+                if(searchResults.length==0 || searchResults==undefined)
+                {<option value="No results found"></option>}else
+                {searchResults.map((result, index) => {
+                  console.log("result", result);
+                  return (
+                    <option
+                      key={index}
+                      value={
+                        result.address
+                          ? result.address.freeformAddress +
+                            " " +
+                            result.position.lat +
+                            " " +
+                            result.position.lon
+                          : ""
+                      }
+                    >
                       {result.address ? result.address.freeformAddress : ""}
-                    </option>)
-                  })
-                  }
+                    </option>
+                  );
+                })}
               </datalist>
             </div>
 
-            <button onClick={() => {handleSubmit()}}>Add Dustbin</button>
+            <button
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Add Dustbin
+            </button>
           </div>
+          <div ref={mapElement} className="map" />
         </div>
       )}
     </>

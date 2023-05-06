@@ -36,3 +36,17 @@ export const getDustbin = async () => {
       console.log("api error",error)
   }
 }
+
+export const updateUser = async (data,id) => {
+  console.log(id);
+  let user = null;
+  let error = null;
+  const userData = await axios.put(`${url}/api/users/${id}`, data).then((res) => {
+    user = res.data;
+  }).catch((err) => {
+    console.log(err);
+    error = err;
+  }
+  );
+  return [error,user];
+}
