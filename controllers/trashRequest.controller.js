@@ -33,3 +33,13 @@ export const newtrashRequest = async (req, res) => {
     return serverErrorResponse(res, error.message);
   }
 };
+
+
+export const getAllTrashRequest = async (req, res) => {
+    try {
+        let response = await trashRequest.find({});
+        return successResponse(res, response, "Trash request fetched successfully..")
+    } catch (err) {
+        return serverErrorResponse(res, err.message);
+    }
+    }
