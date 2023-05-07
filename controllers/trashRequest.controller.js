@@ -1,6 +1,7 @@
 import trashRequest from "../models/trashRequest.js";
 import { serverErrorResponse, successResponse } from "../utils/response.js";
 import axios from "axios";
+import User from "../models/User.js";
 
 export const newtrashRequest = async (req, res) => {
   try {

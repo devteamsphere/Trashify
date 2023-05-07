@@ -32,6 +32,11 @@ export const completedRequest = async (req, res) => {
                 credits: 10
             }
         })
+
+        
+
+
+
         console.log(updateUserAndCredit)
         return res.status(200).json(update);
     } catch (error) {
