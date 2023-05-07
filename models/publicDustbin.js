@@ -4,7 +4,7 @@ const DustbinSchema = new mongoose.Schema(
   {
     dustbinId : {
       type: String,
-      required: true,
+      default: "",
     },
     longitude: {
       type: String,
@@ -17,10 +17,6 @@ const DustbinSchema = new mongoose.Schema(
       default: "",
     },
 
-    dustbinId: {
-      type: String,
-      default: "",
-    },
     qrUrl:{
       type: String,
       default: ""
