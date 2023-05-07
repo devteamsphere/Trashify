@@ -1,7 +1,8 @@
 import express from "express";
-import { acceptedRequest } from "../controllers/driverApp.controller.js";
+import { acceptedRequest, completedRequest } from "../controllers/driverApp.controller.js";
 const router = express.Router();
 
-router.put("/:id" , acceptedRequest)
+router.put("/acceptedRequest/:id" , acceptedRequest)
+router.put("/completedRequest/:id" , completedRequest)
 
 export default router;
