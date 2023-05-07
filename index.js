@@ -11,6 +11,7 @@ import acceptedRequest from "./routes/driverApp.js"
 import passport from 'passport';
 import './utils/passport.js';
 import session from 'express-session';
+import bodyParser from 'body-parser';
 const app = express();
 
 dotenv.config();
@@ -25,6 +26,8 @@ app.use(
 app.use(cors());
 app.use(express.json());
 
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 const connect = async () => {
   try {
