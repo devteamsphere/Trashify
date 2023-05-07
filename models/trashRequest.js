@@ -21,7 +21,7 @@ const trashRequestSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum: ["pending", "accepted", "rejected"],
+            enum: ["pending","allocated", "accepted", "rejected"],
             required: true,
             default: "pending",
 
@@ -49,7 +49,12 @@ const trashRequestSchema = new mongoose.Schema(
         address: {
             type: String,
             default: ""
-        }
+        },
+        driverId: {
+            type: String,
+            default: ""
+        },
+        
         
         
 

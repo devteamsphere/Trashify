@@ -52,6 +52,11 @@ const UserSchema = new mongoose.Schema(
     resolvedRequest: {
       type: Number,
       default: 0
+    },
+    driverStatus:{
+      type: String,
+      enum: ["available", "busy"],
+      default: "available"
     }
 
   },

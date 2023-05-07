@@ -50,8 +50,35 @@ export const getAllTrashRequest = async (req, res) => {
   }
 };
 
+const checkAvailabilityDriver = async (id) => {
+  try {
+    const driver = await User.findById(id);
+    if (driver.status === "available") {
+      return [[], true, NULL];
+    } else {
+      const dustbin = await trashRequest.find({
+        status: "allocated",
+        driverId: id,
+      });
+      if (dustbin.length > 0) {
+        return [dustbin, false, NULL];
+      }
+    }
+  } catch (error) {
+    return [[], false, error];
+  }
+};
+
 export const calculateDistance = async (req, res) => {
   try {
+    const id = req.body.id;
+    const [stop, go, err] = await checkAvailabilityDriver(id);
+    if (err) {
+      return serverErrorResponse(res, err.message);
+    } else if (stop.length > 0) {
+      return successResponse(res, stop, "Driver is not available..");
+    }
+
     let destination = [];
     let tempDest = [];
     const dustbins = await trashRequest.find({
@@ -132,6 +159,20 @@ export const calculateDistance = async (req, res) => {
     if (tempDest.length > 5) {
       tempDest = tempDest.slice(0, 5);
     }
+
+    Promise.all(
+      tempDest.map(async (dustbin) => {
+        const dustbinData = await trashRequest.findOne({
+          _id: dustbin._id,
+        });
+        dustbinData.status = "allocated";
+        dustbinData.driverId = id;
+        await dustbinData.save();
+      })
+    );
+    const driver = await User.findByIdAndUpdate(id, {
+      status: "busy",
+    });
 
     return successResponse(res, tempDest, "Distance calculated successfully..");
   } catch (error) {
