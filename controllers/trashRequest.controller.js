@@ -54,7 +54,10 @@ export const calculateDistance = async (req, res) => {
   try {
     let destination = [];
     let tempDest = [];
-    const dustbins = await trashRequest.find({ status: "pending" ,requestType:"public"});
+    const dustbins = await trashRequest.find({
+      status: "pending",
+      requestType: "public",
+    });
     if (dustbins.length === 0) {
       return res.status(400).json({ message: "No pending request found" });
     }
@@ -77,21 +80,19 @@ export const calculateDistance = async (req, res) => {
           createdAt: dustbin.createdAt,
           userId: dustbin.userId,
         });
-
-
       });
     }
     console.log(destination);
     let origin = [];
     // for (let i = 0; i < destination.length; i++) {
-      
+
     // }
     origin.push({
-        point: {
-          latitude: parseFloat(req.body.latitude),
-          longitude: parseFloat(req.body.longitude),
-        },
-      });
+      point: {
+        latitude: parseFloat(req.body.latitude),
+        longitude: parseFloat(req.body.longitude),
+      },
+    });
 
     let callParameters = {
       origins: origin,
@@ -119,35 +120,20 @@ export const calculateDistance = async (req, res) => {
     console.log(distance);
 
     // sort calcDistance on the basis of lengthInMeters
-   calcDistance.data.map((loc,index)=>{
-    tempDest[index].distance = loc.routeSummary.lengthInMeters;
-    tempDest[index].drivingTime = loc.routeSummary.travelTimeInSeconds;
-   })
+    calcDistance.data.map((loc, index) => {
+      tempDest[index].distance = loc.routeSummary.lengthInMeters;
+      tempDest[index].drivingTime = loc.routeSummary.travelTimeInSeconds;
+    });
 
-    tempDest.sort((a,b)=>{
+    tempDest.sort((a, b) => {
       return a.distance - b.distance;
-    })
+    });
 
+    if (tempDest.length > 5) {
+      tempDest = tempDest.slice(0, 5);
+    }
 
-    return res.status(200).json(tempDest);
-    // return new Promise((resolve, reject) => {
-    //   ttapi.services.matrixRouting(callParameters).then((matrixApIResults) => {
-    //     const results = matrixApIResults.matrix[0];
-    //     console.log(results);
-    //     const resultsArray = results.map((result, index) => {
-    //       console.log(result);
-
-    //       return {
-    //         // location: locations[index],
-    //         drivingtime: result.response.routeSummary.travelTimeInSeconds,
-    //         drivingdistance: result.response.routeSummary.lengthInMeters,
-    //       };
-    //     });
-
-    //     this.setState({ dandt: resultsArray });
-    //     console.log(this.state.dandt);
-    //   });
-    // });
+    return successResponse(res, tempDest, "Distance calculated successfully..");
   } catch (error) {
     return serverErrorResponse(res, error.message);
   }
