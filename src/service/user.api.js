@@ -76,3 +76,16 @@ export const getAllDriver = async (data, id) => {
   );
   return [error, user];
 }
+export const dashboardInfo = async () => {
+  
+  let user = null;
+  let error = null;
+  const userData = await axios.get(`${url}/api/users/dashboardInfo`).then((res) => {
+    user = res.data;
+  }).catch((err) => {
+    console.log(err);
+    error = err;
+  }
+  );
+  return [error, user];
+}

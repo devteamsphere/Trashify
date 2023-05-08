@@ -4,7 +4,7 @@ import React from "react";
 
 import CardStats from "components/Cards/CardStats.js";
 
-export default function HeaderStats() {
+export default function HeaderStats(props) {
   return (
     <>
       {/* Header */}
@@ -16,7 +16,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="No. of active Vans"
-                  statTitle="350,897"
+                  statTitle={props.data.users ? props.data.users.length :0}
                   // statArrow="up"
                   // statPercent="3.48"
                   // statPercentColor="text-emerald-500"
@@ -24,11 +24,12 @@ export default function HeaderStats() {
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-red-500"
                 />
+
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="No. of public dustbin"
-                  statTitle="2,356"
+                  statTitle={props.data.dustbin ? props.data.dustbin.length :0}
                   // statArrow="down"
                   // statPercent="3.48"
                   // statPercentColor="text-red-500"
@@ -40,7 +41,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Request pending"
-                  statTitle="924"
+                  statTitle={props.data.pending ? props.data.pending.length :0}
                   // statArrow="down"
                   // statPercent="1.10"
                   // statPercentColor="text-orange-500"
@@ -52,7 +53,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Request completed"
-                  statTitle="4965"
+                  statTitle={props.data.accepted ? props.data.accepted.length :0}
                   // statArrow="up"
                   // statPercent="12"
                   // statPercentColor="text-emerald-500"
