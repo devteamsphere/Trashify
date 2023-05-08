@@ -2,7 +2,8 @@ import express from "express";
 import { createDriver, updateUser,deleteUser,getUser,getUsers,updateUsercredits } from "../controllers/user.controller.js";
 
 const router = express.Router();
-
+router.post("/createDriver" , createDriver)
+router.put("/updateUsercredits",updateUsercredits)
 // UPDATE
 router.put("/:id", updateUser);
 // DELETE
@@ -14,7 +15,6 @@ router.get("/:id", getUser);
 router.get("/", getUsers);
 
 // newDriverDetail
-router.post("/createDriver" , createDriver)
-router.put("/updateUsercredits",updateUsercredits)
+
 
 export default router;
