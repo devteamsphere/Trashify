@@ -71,14 +71,15 @@ export const createDriver = async (req, res) => {
 };
 export const updateUsercredits = async (req, res) => {
   try {
-    const updateUsercredit = await User.findOne({ _id: req.params.id });
-    if (updateUsercredit.credits < 50) {
+    const {userId,amount} = req.query;
+    const updateUsercredit = await User.findOne({ _id: userId });
+    if (updateUsercredit.credits < amount) {
       return res.status(500).send("please add money");
     }
     const updatedCredits = await User.findOneAndUpdate({ _id: updateUsercredit.id },
       {
         $inc: {
-          credits: -50,
+          credits: -amount,
         },
       })
     return res.status(200).json(updatedCredits);
