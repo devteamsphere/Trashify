@@ -5,6 +5,7 @@ import { serverErrorResponse, successResponse } from "../utils/response.js";
 export const getAllDrivers = async (req, res) => {
     try {
         const drivers = await User.find({ userType: "driver" });
+        console.log(drivers);
         return successResponse(res, drivers, "Drivers fetched successfully..");
     } catch (error) {
         return serverErrorResponse(res, error.message);
