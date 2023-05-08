@@ -61,6 +61,7 @@ const checkAvailabilityDriver = async (id) => {
       status: "allocated",
       driverId: id,
     });
+    console.log(dustbin)
     if (dustbin.length > 0) {
       return [dustbin, false, null];
     }
@@ -71,10 +72,12 @@ export const calculateDistance = async (req, res) => {
   try {
     const id = req.body.id;
     const [stop, go, err] = await checkAvailabilityDriver(id);
+    console.log(stop);
     let dustbins;
     if (err !== null) {
       return serverErrorResponse(res, err);
     } else if (stop.length > 0) {
+      console.log(stop);
       dustbins = stop;
     } else {
       dustbins = await trashRequest.find({
@@ -82,7 +85,6 @@ export const calculateDistance = async (req, res) => {
         requestType: "public",
       });
     }
-
     let destination = [];
     let tempDest = [];
 
