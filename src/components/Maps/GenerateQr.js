@@ -209,11 +209,12 @@ const GenerateQR = () => {
 
   return (
     <>
+      <div style={{backgroundColor:"#C2E5D3"}}>
       {map && (
-        <div className="aap m-10 mt-28">
+        <div className="aap m-10 mt-28 " style={{backgroundColor:"#C2E5D3"}}>
         
-          <div className=" m-48 px-18">
-            <h1>Where to?</h1>
+          <div className=" mx-6 px-18">
+            <h1 style={{fontWeight:"800"}}>Search Location:</h1>
             {/* <input
               type="text"
               id="longitude"
@@ -235,7 +236,7 @@ const GenerateQR = () => {
                     {result.address.freeformAddress}
                   </option>
                 ))} */}
-            <div className="mx-20 p-10">
+            <div className="mx-20 px-10">
               <input
                 type="text"
                 className="form-control m-5 z-20"
@@ -282,16 +283,19 @@ const GenerateQR = () => {
             </div>
 
             <button
+            className="text-white bg-transparent border border-solid border-lightBlue-500 bg-lightBlue-500 active:bg-lightBlue-500 font-bold uppercase text-xs px-4 py-2 rounded-none outline-none focus:outline-none mr-1 mb-1 mx-48 ease-linear transition-all duration-150"
               onClick={() => {
                 handleSubmit();
               }}
             >
               Add Dustbin
+
             </button>
           </div>
           <div ref={mapElement} className="map" />
         </div>
       )}
+      </div>
     </>
   );
 };
