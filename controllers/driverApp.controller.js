@@ -31,6 +31,7 @@ export const completedRequest = async (req, res) => {
     );
     console.log(update);
     const trashRequestUserId = update.userId;
+    const driverId = update.driverId;
     console.log(trashRequestUserId);
     const updateUserAndCredit = await User.findOneAndUpdate(
       { _id: trashRequestUserId },
@@ -44,7 +45,7 @@ export const completedRequest = async (req, res) => {
     const checkDriver = await trashRequest.aggregate([
       {
         $match: {
-          driverId: req.params.id,
+          driverId: driverId,
           $or: [{ status: "accepted" }, { status: "allocated" }],
         },
       },
@@ -52,7 +53,7 @@ export const completedRequest = async (req, res) => {
 
     if (checkDriver.length == 0) {
       const updateDriver = await User.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: driverId },
         { driverStatus: "available" }
       );
       return successResponse(res, updateDriver, "Driver is available now..");
