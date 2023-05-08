@@ -52,39 +52,40 @@ export const getAllTrashRequest = async (req, res) => {
 };
 
 const checkAvailabilityDriver = async (id) => {
- 
-    const driver = await User.findById(id);
-    console.log(driver);
-    if (driver.driverStatus == "available") {
-      return [[], true, null];
-    } else {
-      const dustbin = await trashRequest.find({
-        status: "allocated",
-        driverId: id,
-      });
-      if (dustbin.length > 0) {
-        return [dustbin, false, null];
-      }
+  const driver = await User.findById(id);
+  console.log(driver);
+  if (driver.driverStatus == "available") {
+    return [[], true, null];
+  } else {
+    const dustbin = await trashRequest.find({
+      status: "allocated",
+      driverId: id,
+    });
+    if (dustbin.length > 0) {
+      return [dustbin, false, null];
     }
-  
+  }
 };
 
 export const calculateDistance = async (req, res) => {
   try {
     const id = req.body.id;
     const [stop, go, err] = await checkAvailabilityDriver(id);
+    let dustbins;
     if (err !== null) {
       return serverErrorResponse(res, err);
     } else if (stop.length > 0) {
-      return successResponse(res, stop, "Driver is not available..");
+      dustbins = stop;
+    } else {
+      dustbins = await trashRequest.find({
+        status: "pending",
+        requestType: "public",
+      });
     }
 
     let destination = [];
     let tempDest = [];
-    const dustbins = await trashRequest.find({
-      status: "pending",
-      requestType: "public",
-    });
+
     if (dustbins.length === 0) {
       return res.status(400).json({ message: "No pending request found" });
     }

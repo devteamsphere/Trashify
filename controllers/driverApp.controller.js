@@ -1,6 +1,16 @@
 import trashRequest from "../models/trashRequest.js";
 import User from "../models/User.js";
-import { successResponse } from "../utils/response.js";
+import { serverErrorResponse, successResponse } from "../utils/response.js";
+
+export const getAllDrivers = async (req, res) => {
+    try {
+        const drivers = await User.find({ userType: "driver" });
+        return successResponse(res, drivers, "Drivers fetched successfully..");
+    } catch (error) {
+        return serverErrorResponse(res, error.message);
+    }
+};
+
 
 export const acceptedRequest = async (req, res) => {
   try {
@@ -54,7 +64,10 @@ export const completedRequest = async (req, res) => {
     if (checkDriver.length == 0) {
       const updateDriver = await User.findOneAndUpdate(
         { _id: driverId },
-        { driverStatus: "available" }
+        { driverStatus: "available" },
+        {
+          new: true,
+        }
       );
       return successResponse(res, updateDriver, "Driver is available now..");
     }
