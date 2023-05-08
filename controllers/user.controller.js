@@ -68,3 +68,22 @@ export const createDriver = async (req, res) => {
     return serverErrorResponse(res, error.message);
   }
 };
+export const updateUsercredits = async (req, res) => {
+  try {
+    const updateUsercredit = await User.findOne({ _id: req.params.id });
+    if (updateUsercredit.credits < 50) {
+      return res.status(500).send("please add money");
+    }
+    const updatedCredits = await User.findOneAndUpdate({ _id: updateUsercredit.id },
+      {
+        $dec: {
+          credits: 50,
+        },
+      })
+    return res.status(200).json(updatedCredits);
+  } catch (error) {
+    return res.send(error);
+  }
+
+};
+
