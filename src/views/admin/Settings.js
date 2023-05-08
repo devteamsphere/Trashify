@@ -26,9 +26,9 @@ const [user,setUser] = useState({});
         <div className="w-full lg:w-4/12 px-4">
           <CardProfile user={user}/>
         </div>
-        <div className="w-full lg:w-4/12 px-4">
+        {/* <div className="w-full lg:w-4/12 px-4">
           <EditProfile user={user}/>
-        </div>
+        </div> */}
       </div>
     </>
   );
