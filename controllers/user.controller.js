@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import passwordGenerator from "generate-password";
 import { serverErrorResponse, successResponse } from "../utils/response.js";
+import trashRequest from "../models/trashRequest.js";
 
 export const updateUser = async (req, res) => {
   try {
@@ -64,6 +65,49 @@ export const createDriver = async (req, res) => {
     const newDriver = await newDriverDetail.save();
     console.log(newDriver);
     return res.status(200).json(newDriver);
+  } catch (error) {
+    return serverErrorResponse(res, error.message);
+  }
+};
+
+const dashboardInfo = async (req, res) => {
+  try {
+    const users = await User.find({ userType: "driver" });
+
+    const pending = await trashRequest.aggregate([
+      {
+        $match: {
+          status: "pending",
+        },
+      },
+      {
+        $lookup: {
+          from: "publicdustbins",
+          localField: "dustbinId",
+          foreignField: "_id",
+          as: "dustbin",
+        },
+      },
+      
+
+    ]);
+    const accepted = await trashRequest.aggregate([
+      {
+        $match: {
+          status: "completed",
+        },
+      },
+      {
+        $lookup: {
+          from: "publicdustbins",
+          localField: "dustbinId",
+          foreignField: "_id",
+          as: "dustbin",
+        },
+      },
+    ]);
+
+
   } catch (error) {
     return serverErrorResponse(res, error.message);
   }
