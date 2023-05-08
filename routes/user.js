@@ -15,6 +15,6 @@ router.get("/", getUsers);
 
 // newDriverDetail
 router.post("/createDriver" , createDriver)
-router.put("/updateUsercredits/:id",updateUsercredits)
+router.put("/updateUsercredits",updateUsercredits)
 
 export default router;
