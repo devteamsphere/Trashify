@@ -77,8 +77,8 @@ export const updateUsercredits = async (req, res) => {
     }
     const updatedCredits = await User.findOneAndUpdate({ _id: updateUsercredit.id },
       {
-        $dec: {
-          credits: 50,
+        $inc: {
+          credits: -50,
         },
       })
     return res.status(200).json(updatedCredits);
