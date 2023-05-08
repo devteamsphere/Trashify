@@ -4,8 +4,8 @@ import User from "../models/User.js"
 
 export const acceptedRequest = async (req, res) => {
     try {
-        console.log(req.params.id);
-        const update = await trashRequest.findOneAndUpdate({_id: req.params.id}, {
+        console.log(req.body.id);
+        const update = await trashRequest.findOneAndUpdate({_id: req.body.id}, {
             status : "accepted",
             
         },{new : true});
@@ -21,7 +21,7 @@ export const acceptedRequest = async (req, res) => {
 export const completedRequest = async (req, res) => {
     try {
         console.log(req.params.id);
-        const update = await trashRequest.findOneAndUpdate({_id: req.params.id}, {
+        const update = await trashRequest.findOneAndUpdate({_id: req.body.id}, {
             status : "completed",
         },{new : true});
         console.log(update);
