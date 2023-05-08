@@ -1,6 +1,7 @@
 import trashRequest from "../models/trashRequest.js";
 import { serverErrorResponse, successResponse } from "../utils/response.js";
 import axios from "axios";
+import User from "../models/User.js";
 
 export const newtrashRequest = async (req, res) => {
   try {
@@ -51,30 +52,29 @@ export const getAllTrashRequest = async (req, res) => {
 };
 
 const checkAvailabilityDriver = async (id) => {
-  try {
+ 
     const driver = await User.findById(id);
-    if (driver.status === "available") {
-      return [[], true, NULL];
+    console.log(driver);
+    if (driver.driverStatus == "available") {
+      return [[], true, null];
     } else {
       const dustbin = await trashRequest.find({
         status: "allocated",
         driverId: id,
       });
       if (dustbin.length > 0) {
-        return [dustbin, false, NULL];
+        return [dustbin, false, null];
       }
     }
-  } catch (error) {
-    return [[], false, error];
-  }
+  
 };
 
 export const calculateDistance = async (req, res) => {
   try {
     const id = req.body.id;
     const [stop, go, err] = await checkAvailabilityDriver(id);
-    if (err) {
-      return serverErrorResponse(res, err.message);
+    if (err !== null) {
+      return serverErrorResponse(res, err);
     } else if (stop.length > 0) {
       return successResponse(res, stop, "Driver is not available..");
     }
@@ -171,7 +171,7 @@ export const calculateDistance = async (req, res) => {
       })
     );
     const driver = await User.findByIdAndUpdate(id, {
-      status: "busy",
+      driverStatus: "busy",
     });
 
     return successResponse(res, tempDest, "Distance calculated successfully..");
