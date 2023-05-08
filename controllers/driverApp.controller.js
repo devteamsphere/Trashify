@@ -1,52 +1,66 @@
 import trashRequest from "../models/trashRequest.js";
-import User from "../models/User.js"
-
+import User from "../models/User.js";
+import { successResponse } from "../utils/response.js";
 
 export const acceptedRequest = async (req, res) => {
-    try {
-        console.log(req.params.id);
-        const update = await trashRequest.findOneAndUpdate({_id: req.params.id}, {
-            status : "accepted",
-            
-        },{new : true});
-        
-        return res.status(200).json(update);
-    } catch (error) {
-        return res.send(error);
-    }
+  try {
+    console.log(req.params.id);
+    const update = await trashRequest.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        status: "accepted",
+      },
+      { new: true }
+    );
 
+    return res.status(200).json(update);
+  } catch (error) {
+    return res.send(error);
+  }
 };
-
 
 export const completedRequest = async (req, res) => {
-    try {
-        console.log(req.params.id);
-        const update = await trashRequest.findOneAndUpdate({_id: req.params.id}, {
-            status : "completed",
-        },{new : true});
-        console.log(update);
-        const trashRequestUserId = update.userId;
-        console.log(trashRequestUserId);
-        const updateUserAndCredit = await User.findOneAndUpdate({ _id: trashRequestUserId }, {
-            $inc: {
-                credits: 10
-            }
-        })
+  try {
+    console.log(req.params.id);
+    const update = await trashRequest.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        status: "completed",
+      },
+      { new: true }
+    );
+    console.log(update);
+    const trashRequestUserId = update.userId;
+    console.log(trashRequestUserId);
+    const updateUserAndCredit = await User.findOneAndUpdate(
+      { _id: trashRequestUserId },
+      {
+        $inc: {
+          credits: 10,
+        },
+      }
+    );
 
-        // const checckDriver = await trash
+    const checkDriver = await trashRequest.aggregate([
+      {
+        $match: {
+          driverId: req.params.id,
+          $or: [{ status: "accepted" }, { status: "allocated" }],
+        },
+      },
+    ]);
 
-
-
-
-
-        console.log(updateUserAndCredit)
-        return res.status(200).json(update);
-    } catch (error) {
-        return res.send(error);
+    if (checkDriver.length == 0) {
+      const updateDriver = await User.findOneAndUpdate(
+        { _id: req.params.id },
+        { driverStatus: "available" }
+      );
+      return successResponse(res, updateDriver, "Driver is available now..");
     }
 
+    console.log(updateUserAndCredit);
+    return successResponse(res, update, "Driver updated successfully..");
+  } catch (error) {
+    return res.send(error);
+  }
 };
-
-
-
-
