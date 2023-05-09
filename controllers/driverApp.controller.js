@@ -71,6 +71,7 @@ export const completedRequest = async (req, res) => {
         ]);
 
         if (checkDriver.length == 0) {
+            console.log("heel0..");
             const updateDriver = await User.findOneAndUpdate(
                 { _id: driverId },
                 { driverStatus: "available" },
