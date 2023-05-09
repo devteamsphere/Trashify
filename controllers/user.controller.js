@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import passwordGenerator from "generate-password";
 import { serverErrorResponse, successResponse } from "../utils/response.js";
 import trashRequest from "../models/trashRequest.js";
+import publicDustbin from "../models/publicDustbin.js";
 
 export const updateUser = async (req, res) => {
   try {
@@ -70,9 +71,12 @@ export const createDriver = async (req, res) => {
   }
 };
 
-const dashboardInfo = async (req, res) => {
+export const dashboardInfo = async (req, res) => {
   try {
+    console.log("in");
     const users = await User.find({ userType: "driver" });
+
+    const dustbin = await publicDustbin.find();
 
     const pending = await trashRequest.aggregate([
       {
@@ -84,7 +88,7 @@ const dashboardInfo = async (req, res) => {
         $lookup: {
           from: "publicdustbins",
           localField: "dustbinId",
-          foreignField: "_id",
+          foreignField: "dustbinId",
           as: "dustbin",
         },
       },
@@ -101,11 +105,18 @@ const dashboardInfo = async (req, res) => {
         $lookup: {
           from: "publicdustbins",
           localField: "dustbinId",
-          foreignField: "_id",
+          foreignField: "dustbinId",
           as: "dustbin",
         },
       },
     ]);
+
+    return res.status(200).json({
+      users: users,
+      dustbin: dustbin,
+      pending: pending,
+      accepted: accepted,
+    });
 
 
   } catch (error) {

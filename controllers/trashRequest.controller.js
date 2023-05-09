@@ -88,6 +88,7 @@ export const calculateDistance = async (req, res) => {
     let destination = [];
     let tempDest = [];
 
+
     if (dustbins.length === 0) {
       return res.status(400).json({ message: "No pending request found" });
     }
