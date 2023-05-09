@@ -70,6 +70,31 @@ export const createDriver = async (req, res) => {
     return serverErrorResponse(res, error.message);
   }
 };
+export const updateUsercredits = async (req, res) => {
+  try {
+    console.log(req.query);
+    const {userId,amount} = req.query;
+    const amt = parseInt(amount);
+    console.log(userId)
+    console.log(amount)
+    const updateUsercredit = await User.findById(userId);
+    console.log(updateUsercredit)
+    if (updateUsercredit.credits < amt) {
+      return serverErrorResponse(res,"amt less");
+    }
+    const updatedCredits = await User.findOneAndUpdate({ _id: updateUsercredit.id },
+      {
+        $inc: {
+          credits: -amt,
+        },
+      })
+    return successResponse(res,updatedCredits,"Amount deducted");
+  } catch (error) {
+    return res.send(error);
+  }
+
+};
+
 
 export const dashboardInfo = async (req, res) => {
   try {

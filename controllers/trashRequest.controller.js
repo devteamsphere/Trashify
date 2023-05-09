@@ -183,3 +183,14 @@ export const calculateDistance = async (req, res) => {
     return serverErrorResponse(res, error.message);
   }
 };
+
+export const pendingRequest = async (req, res) => {
+  try {
+    let pendingRequests = await trashRequest.find({status:"pending"});
+    
+    return successResponse(res,pendingRequests,"le bhai dhruv")
+  } catch (error) {
+    return serverErrorResponse(res,error.message)
+  }
+};
+
