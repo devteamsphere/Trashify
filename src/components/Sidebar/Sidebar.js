@@ -148,7 +148,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  QR Code
+                  Public Dustbin
                 </Link>
               </li>
 
