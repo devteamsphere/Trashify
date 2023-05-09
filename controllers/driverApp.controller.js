@@ -60,6 +60,22 @@ export const completedRequest = async (req, res) => {
                 }
             }
         )
+        const updateUserResolvedRequest = await User.findOneAndUpdate(
+            { _id: trashRequestUserId },
+            {
+                $inc: {
+                    resolvedRequest : 1,
+                }
+            }
+        )
+        const updateDriverResolvedRequest = await User.findOneAndUpdate(
+            { _id: driverId },
+            {
+                $inc: {
+                    resolvedRequest : 1,
+                }
+            }
+        )
 
         const checkDriver = await trashRequest.aggregate([
             {
@@ -90,4 +106,3 @@ export const completedRequest = async (req, res) => {
     }
 };
 
-console.log("bhai push ho ja")
