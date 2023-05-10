@@ -89,3 +89,13 @@ export const dashboardInfo = async () => {
   );
   return [error, user];
 }
+
+export const allTrashRequest = async () => {
+  try {
+    const data = await axios.get(`${url}/api/trashRequest/allTrashRequest`);
+    return data;
+    
+  } catch (error) {
+    console.log("api error", error)
+  }
+}

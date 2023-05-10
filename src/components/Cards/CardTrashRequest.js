@@ -7,17 +7,18 @@ import PropTypes from "prop-types";
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { useEffect, useState } from "react";
-import { getDustbin } from "../../service/user.api";
+import { allTrashRequest } from "../../service/user.api";
 
 export default function CardTrashRequest({ color }) {
 
-  const [dustbins, setDustbins] = useState([]);
+  const [TrashRequest, setallTrashRequest] = useState([]);
    useEffect(() => {
      const initial = async()=>{
        
-          const res = await getDustbin();
+          const res = await allTrashRequest();
           console.log(res);
-          setDustbins(res.data.data);
+          setallTrashRequest(res.data.allTrashRequest);
+          console.log(setallTrashRequest)
         
      }
      initial();
@@ -42,12 +43,12 @@ export default function CardTrashRequest({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Public Dustbin
+                Trash Requests
               </h3>
               {/* <button className="text-lightBlue-500 bg-transparent border border-solid border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
                   Generate QR
               </button> */}
-              <Link className="text-lightBlue-500 bg-transparent border border-solid border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/admin/generateQR">Generate QR</Link>
+             
               
             </div>
           </div>
@@ -119,7 +120,7 @@ export default function CardTrashRequest({ color }) {
               </tr>
             </thead>
             <tbody>
-            {dustbins && dustbins.map((dustbin) => (
+            {TrashRequest && TrashRequest.map((TrashRequest) => (
               <tr>
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   {/* <img
@@ -133,14 +134,14 @@ export default function CardTrashRequest({ color }) {
                       +(color === "light" ? "text-blueGray-600" : "text-white")
                     }
                   >
-                    {dustbin.address ? dustbin.address : "No Address"}
+                    {TrashRequest.address ? TrashRequest.address : "No Address"}
                   </span>
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {dustbin.latitude ? dustbin.latitude +" "+ dustbin.longitude : ""}
+                  {TrashRequest.latitude ? TrashRequest.latitude +" "+ TrashRequest.longitude : ""}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> pending
+                  <i className="fas fa-circle text-orange-500 mr-2"></i> {TrashRequest.status ? TrashRequest.status : "No Status"}
                 </td>
                
                 {/* <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
