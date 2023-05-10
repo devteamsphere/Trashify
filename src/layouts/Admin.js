@@ -18,6 +18,7 @@ import DriverDetail from "views/admin/DriverDetail";
 import EditProfile from "components/Cards/EditProfile";
 import Onboarding from "components/Cards/Onboarding";
 import generateQR from "views/admin/generateQR";
+import TrashRequest from "views/admin/trashRequest";
 
 
 export default function Admin() {
@@ -38,6 +39,8 @@ export default function Admin() {
             <Route path="/admin/generateQR" exact component={generateQR} />
             <Route path="/admin/EditProfile" exact component={EditProfile} />
             <Route path="/admin/onboarding" exact component={Onboarding} />
+            <Route path="/admin/trashRequest" exact component={TrashRequest} />
+
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />
