@@ -198,7 +198,7 @@ export default function CardDriverDetail({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Project
+                  Name
                 </th>
                 <th
                   className={
@@ -208,7 +208,7 @@ export default function CardDriverDetail({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Budget
+                  email
                 </th>
                 <th
                   className={
