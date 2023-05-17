@@ -25,6 +25,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-search-box": "^3.0.0",
+    "react-to-print": "^2.14.12",
     "reactstrap": "^9.1.9",
     "tailwindcss": "2.0.4"
   },

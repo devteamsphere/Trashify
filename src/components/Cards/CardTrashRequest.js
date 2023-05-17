@@ -120,7 +120,7 @@ export default function CardTrashRequest({ color }) {
               </tr>
             </thead>
             <tbody>
-            {TrashRequest && TrashRequest.map((TrashRequest) => (
+            {TrashRequest && TrashRequest.map((tr) => (
               <tr>
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   {/* <img
@@ -134,14 +134,14 @@ export default function CardTrashRequest({ color }) {
                       +(color === "light" ? "text-blueGray-600" : "text-white")
                     }
                   >
-                    {TrashRequest.address ? TrashRequest.address : "No Address"}
+                    {tr.address ? tr.address : "No Address"}
                   </span>
                 </th>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {TrashRequest.latitude ? TrashRequest.latitude +" "+ TrashRequest.longitude : ""}
+                  {tr.latitude ? tr.latitude +" "+ tr.longitude : ""}
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> {TrashRequest.status ? TrashRequest.status : "No Status"}
+                  <i className="fas fa-circle text-orange-500 mr-2"></i> {tr.status ? tr.status : "No Status"}
                 </td>
                
                 {/* <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

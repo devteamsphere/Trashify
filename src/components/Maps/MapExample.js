@@ -193,7 +193,8 @@ const GenerateQR = (props) => {
     if (props.data.users) {
       console.log(props.data.users)
       props.data.users.length > 0 && props.data.users.map((dustbin) => {
-        if (dustbin.userType == "driver") {
+        if (dustbin.userType == "driver" && dustbin.latitude && dustbin.longitude) {
+          
           const element = document.createElement("div");
           element.className = "Dmarker";
           new tt.Marker({ element: element })
